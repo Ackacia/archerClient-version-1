@@ -1,0 +1,34 @@
+{% extends "admin/login.html" %}
+
+{% block content %}
+  {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+      <p class="errornote">
+	{{ error }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
+    <div style="display: flex; justify-content: center; text-align: center" >
+        <h1>**{{ form.get_account_email }}**</h1>
+    </div>
+
+    <div style="display: flex; justify-content: center; text-align: center; font-size: 13px" >
+        <p>Utilisez <b>Google Authenticator</b> ou une autre application d'authentifaction de votre choix pour scanner ce code QR et optenir un OTP</p>
+    </div>
+    <div style="display: flex; justify-content: center; margin-bottom: 15px" >
+        {{ form.qr_code|safe }}
+    </div>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="form-row">
+      {{ form.otp.errors }}
+        <div style="display: flex; justify-content: center">{{ form.otp }}</div>
+    </div>
+
+    <div class="submit-row">
+      <input type="submit" value="Confirmer l'OTP">
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Archer Capital</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/leStyle.css' %}" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container">
+    <!-- Not Found Page HTML -->
+    <div class="page-not-found pt-5">
+        <div class="bg-light shadow">
+            <h2 style="margin-bottom: 60px">4<i class="fa fa-bug"></i>4</h2>
+            <h3 class="mt-4">Opps! Page introuvable</h3>
+            <p>La page que vous cherchez est introuvable.<br>Merci</p>
+            <div class="mt-4">
+                <button type="button" onclick="window.location.href='{% url 'inscription' %}';" class="btn" style="background-color: #3D83E8;color: white" >
+                    <i class="bi bi-house-door-fill"></i> Inscription 
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="blog-footer">
+    <img src="{% static 'assets/images/logo.jpg' %}" width="300" height="100" style="object-fit: contain">
+</footer>
+<script src="{% static 'assets/js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

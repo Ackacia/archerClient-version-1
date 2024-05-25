@@ -1,0 +1,11 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+<link rel="shortcut icon" type="image/png" href="{% static "assets/favicon.png" %}" >
+
+{% block userlinks %}
+  {% if user.is_active and user.is_staff %}
+    <a href="{% url "admin:setup-2fa" %}"> 2FA Auth </a> /
+  {% endif %}
+    {{ block.super }}
+{% endblock %}

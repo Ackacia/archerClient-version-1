@@ -1,0 +1,39 @@
+{% extends "admin/login.html" %}
+
+{% block content %}
+  <form action="" method="post">
+    {% csrf_token %}
+
+    {% if otp_secret %}
+      <p><strong>OTP Secret:</strong></p>
+      <p>{{ otp_secret }}</p>
+      <p>Saisissez-le dans une application 2FA (Google Authenticator, Authy) ou scannez le code QR ci-dessous.</p>
+      <div style="display: flex; justify-content: center" >
+        {{ qr_code|safe }}
+      </div>
+    {% else %}
+      {% if form_errors %}
+	{% for error in form_errors %}
+	  <p class="errornote">
+	    {{ error }}
+	  </p>
+	{% endfor %}
+      {% else %}
+          <div style="display: flex; justify-content: center; text-align: center; font-size: 13px" >
+          <label >Activation de l'authentification à deux facteur (<b>2FA</b>).</label>
+          </div>
+      {% endif %}
+    {% endif %}
+
+    {% if otp_secret %}
+        <div style="display: flex; justify-content: center; text-align: center; margin-top: 10px">
+            <input type="button" value="Optenir l'OTP" onclick="window.location.href='{% url 'admin:confirm-2fa' %}';">
+        </div>
+    {% else %}
+        <div class="submit-row">
+      <input type="submit" value="Activer">
+    </div>
+    {% endif %}
+
+  </form>
+{% endblock %}
